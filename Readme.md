@@ -1,8 +1,8 @@
-This small project is a simple and fast way to emulate a hand drawing digits in the air
+This small project is a simple and fast way to simulate hand-drawn digits in the air
 
 Its main purpose is to analyze a good approach to solve the air hand writing digit calculator, called writing_dynamic_gestures_calculator, part of my Hand Commander framework
 
-Its based on a sketchpad from https://github.com/abhishek305/ProgrammingKnowlegde-Tkinter-Series/blob/master/10th/Slider%20and%20color%20choos.py
+It's based on a sketchpad from https://github.com/abhishek305/ProgrammingKnowlegde-Tkinter-Series/blob/master/10th/Slider%20and%20color%20choos.py
 that was modified to allow continuous live drawing (no need to hold a mouse button)  simulating the constant "drawing" path of hand movements
 
 It also process the drawing to detect a valid digit and use a neural network to infer the current digit.
@@ -41,7 +41,7 @@ There is threshold applied to the inference results to guarantee a good-enough r
 
 Also is worth to mention that a watchdog timer is started after the first movement is detected, that will trigger if no valid input is detected
 
-Even do there is a great margin for improvement, end result is pretty satisfactory:
+Even though there is a great margin for improvement, end result is pretty satisfactory:
 ![Results 1](https://github.com/lisbravo/MNIST-drawing-test/raw/master/end_result_1.gif)
 ![Results 2](https://github.com/lisbravo/MNIST-drawing-test/raw/master/end_result_2.gif)
 
