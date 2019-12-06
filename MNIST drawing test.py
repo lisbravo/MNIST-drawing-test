@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import PIL.Image, PIL.ImageTk
+import tensorflow as tf
 
 
 class main:
@@ -43,14 +44,27 @@ class main:
         self.old_x = None
         self.old_y = None
         self.penwidth = 5
+        self.init_tensorflow()
         self.check_live = BooleanVar()
         self.check_live.set(True) 
         self.highlight_or_clear = IntVar(value=2)
+         
         self.drawWidgets()
         self.c.bind('<B1-Motion>',self.paint)#drwaing the line 
         self.c.bind('<ButtonRelease-1>',self.reset)
         
         
+    def init_tensorflow(self):
+        # from: https://www.tensorflow.org/lite/guide/inference#load_and_run_a_model_in_python
+        
+        # Load TFLite model and allocate tensors.
+        self.interpreter = tf.lite.Interpreter(model_path='./MNIST_basic.tflite')
+        self.interpreter.allocate_tensors()
+
+        # Get input and output tensors.
+        self.input_details = self.interpreter.get_input_details()
+        self.output_details = self.interpreter.get_output_details()
+
 
     def paint(self,e):
         RECTANGLE_MARGIN = 5
@@ -211,10 +225,21 @@ class main:
         self.r2=Radiobutton(self.controls, text="clear", variable=self.highlight_or_clear,value=2).grid(row=2,column=2)
         
         Label(self.controls, text='MNIST Output:',font=('arial 14')).grid(row=3,column=0)
-        self.mnist_output = Label(self.controls,width=28,height=28,bg=self.color_bg)
+        self.mnist_output = Canvas(self.controls,width=28,height=28,bg=self.color_bg)
         self.mnist_output.grid(row=3,column=1)
         
+        row_base = 4
+        progress_bar_array = []
+        for i in range(10):
+            label_text = 'Predicted #' + str(i) + ':'
+            Label(self.controls, text=label_text,font=('arial 10')).grid(row=row_base + i,column=0)
+            progress_bar_array.append(\
+                ttk.Progressbar(self.controls, orient = HORIZONTAL, length = 100, \
+                                mode = 'determinate', maximum=1)) 
+            progress_bar_array[i].grid(row=row_base + i,column=1)
+
         self.controls.pack(side=LEFT)
+        
         
         
         self.c = Canvas(self.master,width=640,height=480,bg=self.color_bg,)
