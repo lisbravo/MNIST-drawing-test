@@ -12,7 +12,7 @@ This is the convolutional version which achieves an average 99.25% accuracy in a
 
 
 The main challenges in this scenario was to "emulate" the start and stop conditions normally used in live handwriting
-recognition, usually  pen down/up
+recognition systems, usually some form of pen down/up
 
 Also, when drawing a new digit, the first movement is an ascending diagonal path to get to the point when a new digit begins,
 since the camera will be registering your movements constantly, we need a way to detect such movement. 
