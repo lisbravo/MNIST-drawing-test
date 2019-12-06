@@ -30,7 +30,7 @@ This has proven to be a pretty good solution as you can see:
 And here you can see the code removing the initial move and also boxing the ROI (Region Of Interest) which is the base for further processing.   
 The rectangle's color change to yellow when the ratio of horizontal to vertical sizes is over a preset level, a basic filter to detect a digit-like shape
 
-![Starting line detection 2](https://github.com/lisbravo/MNIST-drawing-test/sraw/master/tarting_path_detection_2.gif)
+![Starting line detection 2](https://github.com/lisbravo/MNIST-drawing-test/raw/master/starting_path_detection_2.gif)
 
 Coincidently, this acute angle detection in combination with a proper ROI ratio trigger is also a good enough approach to detect the beginning of a digit drawing,
 so, next in order is to detect a drawing finished condition. This has proven to be difficult and there are many approaches to be tested, 
