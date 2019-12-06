@@ -17,18 +17,18 @@ recognition, usually  pen down/up
 Also, when drawing a new digit, the first movement is an ascending diagonal path to get to the point when a new digit begins,
 since the camera will be registering your movements constantly, we need a way to detect such movement, this is a simple simulation on paper:
 
-![alt text](https://github.com/lisbravo/MNIST-drawing-test/on_paper_sim.jpg)
+![On Paper](https://github.com/lisbravo/MNIST-drawing-test/raw/master/on_paper_sim.jpg)
 
 Red highlights this first ascending path, Green the digit. 
 
 So, after some tests, I decided that currently the fastest way to remove these initial movement was to detect the first drawn acute change of path 
 as you can see highlighted in blue in the number one digit on previous image
 This has proven to be a pretty good solution as you can see:
-![alt text](https://github.com/lisbravo/MNIST-drawing-test/starting_path_detection_1.gif)
+![Starting line detection 1](https://github.com/lisbravo/MNIST-drawing-test/raw/master/starting_path_detection_1.gif)
 
 And here you can see the code removing the initial move and also boxing the ROI (Region Of Interest) which is the base for further processing.   
 The rectangle's color change to yellow when the ratio of horizontal to vertical sizes is over a preset level, a basic filter to detect that a digit-like shape
-![alt text](https://github.com/lisbravo/MNIST-drawing-test/starting_path_detection_2.gif)
+![Starting line detection 2](https://github.com/lisbravo/MNIST-drawing-test/sraw/master/tarting_path_detection_2.gif)
 
 Coincidently, this acute angle detection in combination with a proper ROI ratio trigger is also a good enough approach to detect the beginning of a digit drawing,
 so, next in order is to detect a drawing finished condition. This has proven to be difficult and there are many approaches to be tested, 
@@ -41,8 +41,8 @@ There is threshold applied to the inference results to guarantee a good recognit
 Also is worth to mention that a watchdog timer is started after the first movement is detected, that will trigger if no valid input is detected
 
 Even do everything is perfectible, end result is pretty satisfactory:
-![alt text](https://github.com/lisbravo/MNIST-drawing-test/end_result_1.gif)
-![alt text](https://github.com/lisbravo/MNIST-drawing-test/end_result_2.gif)
+![Results 1](https://github.com/lisbravo/MNIST-drawing-test/raw/master/end_result_1.gif)
+![Results 2](https://github.com/lisbravo/MNIST-drawing-test/raw/master/end_result_2.gif)
 
 
 
